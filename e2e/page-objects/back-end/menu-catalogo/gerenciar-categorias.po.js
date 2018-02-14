@@ -18,12 +18,15 @@ var gerenciarCategoriasPage = function() {
 	//Opção Produtos
 	this.optionProdutos = element(by.id('category_info_tabs_products'));
 	this.nmPrimeiroProdListaCategoria = element(by.css('#catalog_category_products_table > tbody > tr.even.pointer.on-mouse > td:nth-child(3)'));
-	this.inputEditOrdemProdutoCategoria = element(by.css('#catalog_category_products_table > tbody > tr.even.pointer.on-mouse > td.editable.a-right.last > input'));
+	this.inputPosicao = element(by.css('.input-text '));
+
 	//Opção Produtos > Filtros
 	this.inputPosicaoDe = element(by.id('catalog_category_products_filter_position_from'));
 	this.inputPosicaoPara = element(by.id('catalog_category_products_filter_position_to'));
 	//Opção Produtos > Lista de Produtos
 	this.tabelaProdutos = element.all(by.css('#catalog_category_products_table tbody tr'));
+	this.linhaTabelaProdutos = element.all(by.css('#catalog_category_products_table tbody tr td'));
+	this.linhaTabelaIndSemRegistro = element(by.cssContainingText('.even td', 'Sem Registro.'));
 
 	this.selecionarElemento  = function(element) {
 		var elemento = element;
@@ -35,6 +38,15 @@ var gerenciarCategoriasPage = function() {
 		var elemento = element;
 		helper.waitElementVisibility(elemento);
 		elemento.clear().sendKeys(txt);
+	};
+
+	this.verificarLinhaSemRegistro = function () {
+		var listaProdutos = this.linhaTabelaProdutos;
+		listaProdutos.filter (function (elem, index) {
+			return elem.getText().then (function (text) {
+				return text === 'Sem Registro.';
+			});
+		}).first.click();
 	};
 };
 

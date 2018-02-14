@@ -76,25 +76,32 @@ describe ('Como o ambiente de homologação é compartilhado, esses testes visam
 				gerenciarCategoriasPage.editarElemento(gerenciarCategoriasPage.inputPosicaoDe, -15); // Menor posição de teste
 				gerenciarCategoriasPage.editarElemento(gerenciarCategoriasPage.inputPosicaoPara, -15);
 				gerenciarCategoriasPage.selecionarElemento(funcoesGeralPage.btnFiltrar);
+				browser.driver.sleep(8000); // Tempo para carregar o filtro
 				gerenciarCategoriasPage.tabelaProdutos.count().then (function (qtdeProduto) {
 					console.log('A qtde. de produtos com posição igual a -15 é: ' + qtdeProduto);
-					gerenciarCategoriasPage.selecionarElemento(funcoesGeralPage.btnLimparFiltro);
 					if (qtdeProduto === 1) {
-						console.log ('Já existe posição de teste definida');
-					} else  {
-						
-					} ;
+						gerenciarCategoriasPage.linhaTabelaIndSemRegistro.isPresent().then (function (statusSemRegistro) {
+							console.log('Linha da tabela \"Sem Registro\": ' + statusSemRegistro);
+							if (statusSemRegistro === true) {
+								browser.driver.sleep(4000);
+								gerenciarCategoriasPage.selecionarElemento(funcoesGeralPage.btnLimparFiltro);
+								gerenciarCategoriasPage.editarElemento(gerenciarCategoriasPage.inputEditOrdemProdutoCategoria, -15);
+								gerenciarCategoriasPage.selecionarElemento(gerenciarCategoriasPage.btnSalvarCategoria);
+								helper.waitElementVisibility(gerenciarCategoriasPage.msgAltCategoriaSalva);
+								gerenciarCategoriasPage.selecionarElemento(funcoesGeralPage.btnLimparFiltro);
+								gerenciarCategoriasPage.nmPrimeiroProdListaCategoria.getText().then (function (texto) {
+									var nomePrimeiroProdHome = texto;
+									console.log('nome do produto: ' + texto);
+									//reindexar ao final
+								});
+							} else {
+								console.log ('Já existe posição de teste definida');
+							};
+						});
+					} else {
+						console.log ('deve ser criado um método que dentro de while, pecorra as linhas da tabela e altere o valor do input que fica dentro da tr');
+					};
 				});
-
-
-
-				/*gerenciarCategoriasPage.editarElemento(gerenciarCategoriasPage.inputEditOrdemProdutoCategoria, -15);
-				gerenciarCategoriasPage.selecionarElemento(gerenciarCategoriasPage.btnSalvarCategoria);
-				helper.waitElementVisibility(gerenciarCategoriasPage.msgAltCategoriaSalva);
-				gerenciarCategoriasPage.nmPrimeiroProdListaCategoria.getText().then (function (texto) {
-					var nomePrimeiroProdHome = texto;
-					console.log('nome do produto: ' + texto);
-				})*/
 			} else {
 				console.log ('A subcategoria Lançamentos não foi selecionada.');
 				console.log('Estava sendo esperado a categoria de nome: Lançamentos |O que tem de mais novo para você;) e não '+ value);

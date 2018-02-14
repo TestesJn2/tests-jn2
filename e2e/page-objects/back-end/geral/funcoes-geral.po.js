@@ -7,7 +7,7 @@ var helper = require('../../../helper/helper.js');
 var funcoesGeralPage = function() {
 	//Botões
 	this.btnFiltrar = element(by.buttonText('Filtrar'));
-	this.btnLimparFiltro = element(by.buttonText('Limpar Filtros'));
+	this.btnLimparFiltro = element(by.id('id_a1e95ed8a08c1c86b671d10041880902'));
 	this.btnExcluir = element(by.buttonText('Excluir'));
 	this.linkTodosResultados = element(by.linkText('Marcar Todos'));
 	this.btnExecutar = element(by.buttonText('Executar'));
@@ -36,6 +36,11 @@ var funcoesGeralPage = function() {
 		helper.waitElementVisibility(this.btnExecutar);
 		this.btnExecutar.click();
 	};
+
+	this.confirmarBtnLimparFiltro = function() {
+		helper.waitElementVisibility(this.btnLimparFiltro);
+		this.btnLimparFiltro.click();
+	}
 
 };
 
