@@ -12,19 +12,15 @@ var waitElementVisibility	= function(element)	{
 
 Helper.prototype.waitElementVisibility = function() {};
 
-var selecionarElemento = function(element)	{	
-	waitElementVisibility.call(element);
+Helper.prototype.selecionarElemento = function(element)	{	
+	waitElementVisibility.call(this, element);
 	element.sendKeys(protractor.Key.ENTER); 
 };
 
-Helper.prototype.selecionarElemento = function() {};
-
-var editarElemento = function (element, txt) {
-	waitElementVisibility.call(element);
-	this.texto = txt;
-	element.sendKeys(texto);
+Helper.prototype.editarElemento = function (element, txt) {
+	waitElementVisibility.call(this, element);
+	this.txt = txt;
+	element.clear().sendKeys(txt);
 };
-
-Helper.prototype.editarElemento = function() {};
 
 module.exports	=	new Helper();
