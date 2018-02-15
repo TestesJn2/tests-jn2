@@ -64,33 +64,36 @@ describe ('Como o ambiente de homologação é compartilhado, esses testes visam
 	fit ('Impacta no teste 4.1, visa garantir que o primeiro produto da home contém quantidade em estoque', function() {
 		menuPage.acessarSubMenu(menuPage.menuCatalogo, menuPage.subMenuGerenciarCategorias);
 		helper.waitElementVisibility(gerenciarCategoriasPage.categoriaHome);
-		gerenciarCategoriasPage.selecionarElemento(gerenciarCategoriasPage.linkExpandirCategoria);
+		helper.selecionarElemento(gerenciarCategoriasPage.linkExpandirCategoria);
 		helper.waitElementVisibility(gerenciarCategoriasPage.subCategoriaCriadosMudos); //última subcategoria a ser exibida
 		browser.driver.sleep(2000);
-		gerenciarCategoriasPage.selecionarElemento(gerenciarCategoriasPage.subCategoriaLancamentos);
+		helper.selecionarElemento(gerenciarCategoriasPage.subCategoriaLancamentos);
 		browser.driver.sleep(5000);
 		gerenciarCategoriasPage.inputNmCategoria.getAttribute('value').then (function (value) {
 			console.log('valor inputNmCategoria: ' + value);
 			if (value === 'Lançamentos |O que tem de mais novo para você;)') {
-				gerenciarCategoriasPage.selecionarElemento(gerenciarCategoriasPage.optionProdutos);
-				gerenciarCategoriasPage.editarElemento(gerenciarCategoriasPage.inputPosicaoDe, -15); // Menor posição de teste
-				gerenciarCategoriasPage.editarElemento(gerenciarCategoriasPage.inputPosicaoPara, -15);
-				gerenciarCategoriasPage.selecionarElemento(funcoesGeralPage.btnFiltrar);
-				browser.driver.sleep(8000); // Tempo para carregar o filtro
+				helper.selecionarElemento(gerenciarCategoriasPage.optionProdutos);
+				helper.editarElemento(gerenciarCategoriasPage.inputPosicaoDe, -15); // Menor posição de teste
+				helper.editarElemento(gerenciarCategoriasPage.inputPosicaoPara, -15);
+				helper.selecionarElemento(funcoesGeralPage.btnFiltrar);
+				browser.driver.sleep(8000); //Tempo para carregar o filtro - Ajax
 				gerenciarCategoriasPage.tabelaProdutos.count().then (function (qtdeProduto) {
 					console.log('A qtde. de produtos com posição igual a -15 é: ' + qtdeProduto);
 					if (qtdeProduto === 1) {
 						gerenciarCategoriasPage.linhaTabelaIndSemRegistro.isPresent().then (function (statusSemRegistro) {
 							console.log('Linha da tabela \"Sem Registro\": ' + statusSemRegistro);
 							if (statusSemRegistro === true) {
-								browser.driver.sleep(4000);
-								gerenciarCategoriasPage.selecionarElemento(funcoesGeralPage.btnLimparFiltro);
-								gerenciarCategoriasPage.editarElemento(gerenciarCategoriasPage.inputEditOrdemProdutoCategoria, -15);
-								gerenciarCategoriasPage.selecionarElemento(gerenciarCategoriasPage.btnSalvarCategoria);
+								helper.selecionarElemento(funcoesGeralPage.btnLimparFiltro);
+								browser.driver.sleep(3500);
+								helper.editarElemento(gerenciarCategoriasPage.inputEditOrdemProdutoCategoria, -15);
+								helper.selecionarElemento(gerenciarCategoriasPage.btnSalvarCategoria);
 								helper.waitElementVisibility(gerenciarCategoriasPage.msgAltCategoriaSalva);
-								gerenciarCategoriasPage.selecionarElemento(funcoesGeralPage.btnLimparFiltro);
+								helper.editarElemento(gerenciarCategoriasPage.inputPosicaoDe, -15); // Menor posição de teste
+								helper.editarElemento(gerenciarCategoriasPage.inputPosicaoPara, -15);
+								helper.selecionarElemento(funcoesGeralPage.btnFiltrar);
+								browser.driver.sleep(8000); // Tempo para carregar o filtro - Ajax
 								gerenciarCategoriasPage.nmPrimeiroProdListaCategoria.getText().then (function (texto) {
-									var nomePrimeiroProdHome = texto;
+								var nomePrimeiroProdHome = texto;
 									console.log('nome do produto: ' + texto);
 									//reindexar ao final
 								});
@@ -108,7 +111,7 @@ describe ('Como o ambiente de homologação é compartilhado, esses testes visam
 			};
 		});		
 		//menuPage.acessarSubMenu(menuPage.menuCatalogo, menuPage.subMenuGerenciarProdutos);
-		//Reindexar
+		//Reindexar */
 	});
 
 	it ('Impacta no teste 7.1 e 7.2, visa garantir a parametrização da Pagar.Me - Configuração', function() {
