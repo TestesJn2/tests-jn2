@@ -17,10 +17,10 @@ var funcoesGeralPage = function() {
 		browser.get('');
 	};
 
-	this.confirmarBusca = function () {
+	/*this.confirmarBusca = function () {
 		helper.waitElementVisibility(this.btnFiltrar);
 		this.btnFiltrar.click();
-	};
+	};*/
 
 	this.confirmarExclusao = function() {
 		helper.waitElementVisibility(this.btnExcluir);
