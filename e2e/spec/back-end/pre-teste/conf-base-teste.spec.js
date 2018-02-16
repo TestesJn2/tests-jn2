@@ -78,32 +78,26 @@ describe ('Como o ambiente de homologação é compartilhado, esses testes visam
 				helper.selecionarElemento(funcoesGeralPage.btnFiltrar);
 				browser.driver.sleep(8000); //Tempo para carregar o filtro - Ajax
 				gerenciarCategoriasPage.tabelaProdutos.count().then (function (qtdeProduto) {
-					console.log('A qtde. de produtos com posição igual a -15 é: ' + qtdeProduto);
-					if (qtdeProduto === 1) {
-						gerenciarCategoriasPage.linhaTabelaIndSemRegistro.isPresent().then (function (statusSemRegistro) {
-							console.log('Linha da tabela \"Sem Registro\": ' + statusSemRegistro);
-							if (statusSemRegistro === true) {
-								helper.selecionarElemento(funcoesGeralPage.btnLimparFiltro);
-								browser.driver.sleep(3500);
-								helper.editarElemento(gerenciarCategoriasPage.inputEditOrdemProdutoCategoria, -15);
-								helper.selecionarElemento(gerenciarCategoriasPage.btnSalvarCategoria);
-								helper.waitElementVisibility(gerenciarCategoriasPage.msgAltCategoriaSalva);
+					gerenciarCategoriasPage.linhaTabelaIndSemRegistro.isPresent().then (function (statusSemRegistro) {
+						console.log('A qtde. de produtos com posição igual a -15 é: ' + qtdeProduto);
+						console.log('Linha da tabela que indica \"Sem Registro\": ' + statusSemRegistro);
+						if ((qtdeProduto === 1) && (statusSemRegistro === true)) { 
+							helper.selecionarElemento(funcoesGeralPage.btnFiltrar);
+							browser.driver.sleep(3500);
+							helper.editarElemento(gerenciarCategoriasPage.inputEditOrdemProdutoCategoria, -15);
+							helper.selecionarElemento(gerenciarCategoriasPage.btnSalvarCategoria);
+							helper.waitElementVisibility(gerenciarCategoriasPage.msgAltCategoriaSalva);
 								helper.editarElemento(gerenciarCategoriasPage.inputPosicaoDe, -15); // Menor posição de teste
 								helper.editarElemento(gerenciarCategoriasPage.inputPosicaoPara, -15);
 								helper.selecionarElemento(funcoesGeralPage.btnFiltrar);
 								browser.driver.sleep(8000); // Tempo para carregar o filtro - Ajax
 								gerenciarCategoriasPage.nmPrimeiroProdListaCategoria.getText().then (function (texto) {
-								var nomePrimeiroProdHome = texto;
+									var nomePrimeiroProdHome = texto;
 									console.log('nome do produto: ' + texto);
 									//reindexar ao final
 								});
-							} else {
-								console.log ('Já existe posição de teste definida');
-							};
-						});
-					} else {
-						console.log ('deve ser criado um método que dentro de while, pecorra as linhas da tabela e altere o valor do input que fica dentro da tr');
-					};
+						};
+					});
 				});
 			} else {
 				console.log ('A subcategoria Lançamentos não foi selecionada.');
