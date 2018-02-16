@@ -10,52 +10,54 @@
 browser.ignoreSynchronization = true;
 
 'use strict';
-//Page-Objects - Front-end
-var autenticacaoPage = require ('../../page-objects/front-end/autenticacao.po');
-var pedidosPage = require ('../../page-objects/front-end/pedidos.po');
-var homePage = require ('../../page-objects/front-end/home.po');
-var carrinhoComprasPage = require ('../../page-objects/front-end/carrinho-de-compras.po');
-var menuPage = require ('../../page-objects/front-end/menu.po');
-var detalheProdutoPage = require ('../../page-objects/front-end/detalhe-produto.po');
-var finalizarCompraPage = require ('../../page-objects/front-end/finalizar-compra.po');
-var confirmaPedidoCompradoPage =  require ('../../page-objects/front-end/confirma-pedido-comprado.po');
-var minhaContaGeralPage = require ('../../page-objects/front-end/minha-conta-geral.po');
-var minhaContaMeusEnderecosPage = require ('../../page-objects/front-end/minha-conta-meus-enderecos.po');
-var minhaContaDadosAcessoPage = require ('../../page-objects/front-end/minha-conta-dados-de-acesso.po');
-var minhaContaMeusPedidosPage = require ('../../page-objects/front-end/minha-conta-meus-pedidos.po');
-var minhaContaMeusComentariosPage = require ('../../page-objects/front-end/minha-conta-meus-comentarios.po');
 
-//Page-obects - Back-end
-var menuBackEndPage = require ('../../page-objects/back-end/geral/menu.po');
-var dashboardPage = require ('../../page-objects/back-end/geral/dashboard.po');
-var autenticacaoBackEndPage = require ('../../page-objects/back-end/geral/autenticacao.po');
-var gerenciarClientesPage = require ('../../page-objects/back-end/menu-clientes/gerenciar-clientes.po');
-var funcoesGeralPage = require ('../../page-objects/back-end/geral/funcoes-geral.po');
+var 
+	//Page-Objects - Front-end
+	autenticacaoPage = require ('../../page-objects/front-end/autenticacao.po'),
+    pedidosPage = require ('../../page-objects/front-end/pedidos.po'),
+    homePage = require ('../../page-objects/front-end/home.po'),
+    carrinhoComprasPage = require ('../../page-objects/front-end/carrinho-de-compras.po'),
+    menuPage = require ('../../page-objects/front-end/menu.po'),
+    detalheProdutoPage = require ('../../page-objects/front-end/detalhe-produto.po'),
+    finalizarCompraPage = require ('../../page-objects/front-end/finalizar-compra.po'),
+    confirmaPedidoCompradoPage =  require ('../../page-objects/front-end/confirma-pedido-comprado.po'),
+	minhaContaGeralPage = require ('../../page-objects/front-end/minha-conta-geral.po'),
+	minhaContaMeusEnderecosPage = require ('../../page-objects/front-end/minha-conta-meus-enderecos.po'),
+	minhaContaDadosAcessoPage = require ('../../page-objects/front-end/minha-conta-dados-de-acesso.po'),
+	minhaContaMeusPedidosPage = require ('../../page-objects/front-end/minha-conta-meus-pedidos.po'),
+	minhaContaMeusComentariosPage = require ('../../page-objects/front-end/minha-conta-meus-comentarios.po'),
 
-//Page-Objects - Formas de Pagamento
-var cieloPage = require ('../../page-objects/modulos-pagamentos/cielo.po');
-var pagarmePage = require ('../../page-objects/modulos-pagamentos/pagar-me.po');
-var pagSeguroPage =  require ('../../page-objects/modulos-pagamentos/pag-seguro.po');
+	//Page-obects - Back-end
+	menuBackEndPage = require ('../../page-objects/back-end/geral/menu.po'),
+	dashboardPage = require ('../../page-objects/back-end/geral/dashboard.po'),
+	autenticacaoBackEndPage = require ('../../page-objects/back-end/geral/autenticacao.po'),
+	gerenciarClientesPage = require ('../../page-objects/back-end/menu-clientes/gerenciar-clientes.po'),
+	funcoesGeralPage = require ('../../page-objects/back-end/geral/funcoes-geral.po'),
 
-//Helper
-var helper = require ('../../helper/helper');
+	//Page-Objects - Formas de Pagamento
+	cieloPage = require ('../../page-objects/modulos-pagamentos/cielo.po'),
+	pagarmePage = require ('../../page-objects/modulos-pagamentos/pagar-me.po'),
+	pagSeguroPage =  require ('../../page-objects/modulos-pagamentos/pag-seguro.po'),
+
+	//Helper
+	helper = require ('../../helper/helper')
+;
 
 //Antes de Cada Teste
 beforeEach(function() {
-	browser.get('');
-	browser.driver.sleep(500);
+	funcoesGeralPage.url();
 });
 
 //Após cada Teste
 afterEach(function() {
-	browser.driver.sleep(1000);
+	//verificar o screenshot
 });
 
 
 describe ('1. Front-End: Tela de Login de Cliente - Valida existência de elementos necessários para logi e novo cadastro.', function () {
 
-	it ('1.1. Seção Já sou cadastrado: verifica se têm título, input e texto dos campos de e-mail e senha, opção recuperar senha e botão entrar.', function() {
-		menuPage.acessoPagCadastroNovoCliente();
+	fit ('1.1. Seção Já sou cadastrado: verifica se têm título, input e texto dos campos de e-mail e senha, opção recuperar senha e botão entrar.', function() {
+		helper.selecionarElemento(menuPage.linkCadastrarNovoCliente, autenticacaoPage.tituloUsuarioCadastrado);
 		helper.waitElementVisibility(autenticacaoPage.tituloUsuarioCadastrado);
 		expect (autenticacaoPage.tituloUsuarioCadastrado.isPresent()).toBe(true);
 		expect (autenticacaoPage.inputEmailUsuario.isDisplayed()).toBe(true);
@@ -1616,13 +1618,13 @@ describe ('7. Front-End: Compras utilizando os métodos Pagar.Me, Cielo 3.0 e Pa
 
 it ('7.4 CC PagSeguro - Finalizar Compra e verificar o status do pedido.', function() {
 		//Teste depende do cadastro de usuário ter sido realizado e trata-se utiliza parte do código do item 4.4, logo, manutenção no mesmo deve ser replicada para este teste.
-		menuPage.url();
+		funcoesGeralPage.url();
 		menuPage.linkMinhaContaOptionMenu.isPresent().then (function(linkMinhaConta){
 			if (linkMinhaConta === true) {
 				console.log('usuário logado, deve efetuar cadastro com usuário de compra do PagSeguro.');
-				menuPage.efetuaLogout();
+				helper.selecionarElemento(menuPage.linkLogout);
 
-				//Análise da existência do usuário PagSeguro, no back-end
+				//Análise da existência do usuário PagSeguro no back-end para saber se é preciso entrar ou cadastratar-se na loja
 				browser.get('http://homol:5945d16a075541a5@homologacao.jn2.xyz/index.php/controle');
 				autenticacaoBackEndPage.login('jn2', 'P4ssw0rd');
 				browser.driver.sleep(500);
@@ -1630,7 +1632,7 @@ it ('7.4 CC PagSeguro - Finalizar Compra e verificar o status do pedido.', funct
 				menuBackEndPage.acessaSubMenuGerenciarClientes();
 				helper.waitElementVisibility(gerenciarClientesPage.tituloGerenciarClientes);
 				gerenciarClientesPage.InformarEmailParaBusca('teste@sandbox.pagseguro.com.br');
-				funcoesGeralPage.confirmarBusca();
+				helper.selecionarElemento(funcoesGeralPage.btnFiltrar);
 				browser.driver.sleep(1000);
 				gerenciarClientesPage.valueUserPagSeguro.isPresent().then(function (status) {
 					if (status === true) {
