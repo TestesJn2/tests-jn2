@@ -22,7 +22,7 @@ var menuPage = function () {
     	browser.get('');
   	};
 
-  	this.acessoPagCadastroNovoCliente = function() {
+  	this.acessoPagCadastroNovoCliente = function() { //
   		helper.waitElementVisibility(this.linkCadastrarNovoCliente);
   		this.linkCadastrarNovoCliente.click();
   	};
