@@ -28,12 +28,6 @@ var gerenciarCategoriasPage = function() {
 	this.linhaTabelaProdutos = element.all(by.css('#catalog_category_products_table tbody tr td'));
 	this.linhaTabelaIndSemRegistro = element(by.cssContainingText('.even td', 'Sem Registro.'));
 
-	this.editarElemento = function (element, txt) {
-		var elemento = element;
-		helper.waitElementVisibility(elemento);
-		elemento.clear().sendKeys(txt);
-	};
-
 	this.verificarLinhaSemRegistro = function () {
 		var listaProdutos = this.linhaTabelaProdutos;
 		listaProdutos.filter (function (elem, index) {
