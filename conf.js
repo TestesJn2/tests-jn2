@@ -8,8 +8,8 @@ exports.config = {
 
   	specs: [
   		'spec.js'	 
-      , './e2e/spec/back-end/pre-teste/conf-base-teste.spec.js'
-      //,'./e2e/spec/front-end/smoke-test.spec.js'
+      //, './e2e/spec/back-end/pre-teste/conf-base-teste.spec.js'
+      ,'./e2e/spec/front-end/smoke-test.spec.js'
   	],
 
   	baseUrl : 'http://homologacao.jn2.xyz',
