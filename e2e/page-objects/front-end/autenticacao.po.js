@@ -85,35 +85,12 @@ var autenticacaoPage = function () {
   this.btnLogin = element(by.id('btn-login'));
 
 
-  this.clickBtnContinuar = function() {
-    helper.waitElementVisibility(this.btnContinuar);
-    this.btnContinuar.click();
-  };
-
+  //Funções Autenticação
   this.login = function (user, password) {
     helper.waitElementVisibility(this.inputEmailUsuario);
     this.inputEmailUsuario.clear().sendKeys(user);
     this.inputSenhaUsuario.clear().sendKeys(password);
-  };
-
-  this.clickBtnLogin = function() {
-    var btnConfirmarLogin = this.btnLogin;
-    helper.waitElementVisibility(btnConfirmarLogin);
-    btnConfirmarLogin.sendKeys(protractor.Key.ENTER);
-    browser.driver.sleep(1000);
-    btnConfirmarLogin.isPresent().then (function (status) {
-      if (status === true) {
-        btnConfirmarLogin.click();
-      } else {
-        console.log('Login foi realizado.');
-      };
-    });
-    browser.driver.sleep(800);
-  };
-
-  this.informaEmailNovoCliente = function (emailClient) {
-    helper.waitElementVisibility(this.inputEmailNovoCadastro);
-    this.inputEmailNovoCadastro.clear().sendKeys(emailClient);
+    this.btnLogin.click();
   };
 
   this.informaDadosPessoaisESenha = function (password, confirmationPassword, fullName, cpf, telephone) {
