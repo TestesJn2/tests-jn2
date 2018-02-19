@@ -14,33 +14,29 @@ var menuPage = function () {
     this.linkCadastrarNovoCliente = element(by.cssContainingText('span', 'Cadastre-se'));
     this.linkCarrinhoCompras = element(by.css('.cart-header'));
 
-  	//Elements Login/Logout Responsive
-  	//this.labelLogoutResponsive = element(by.cssContainingText(''));
-  	//this.labelLoginRegisterResponsive = element(by.cssContainingText(''));
-
-	this.url = function () {
+	  this.url = function () {
     	browser.get('');
   	};
 
-  	this.acessoPagCadastroNovoCliente = function() { //
+  	/*this.acessoPagCadastroNovoCliente = function() { 
   		helper.waitElementVisibility(this.linkCadastrarNovoCliente);
   		this.linkCadastrarNovoCliente.click();
-  	};
+  	};*/
 
-  	this.acessaPagLogin = function() {
+  	/*this.acessaPagLogin = function() {
   		helper.waitElementVisibility(this.linkLogin)
     	this.linkLogin.click();
-  	};
+  	};*/
 
-  	this.efetuaLogout = function() {
+  	/*this.efetuaLogout = function() {
   		helper.waitElementVisibility(this.linkLogout);
     	this.linkLogout.click();
- 	};
+ 	};*/
 
- 	this.clickCarrinhoDeCompras = function() {
+ /*	this.clickCarrinhoDeCompras = function() {
  		helper.waitElementVisibility(this.linkCarrinhoCompras);
  		this.linkCarrinhoCompras.click();
- 	};
+ 	};*/
 
   this.selecionarLinkMinhaConta = function() {
     helper.waitElementVisibility(this.linkMinhaContaOptionMenu);

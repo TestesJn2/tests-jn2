@@ -56,8 +56,8 @@ afterEach(function() {
 
 describe ('1. Front-End: Tela de Login de Cliente - Valida existência de elementos necessários para logi e novo cadastro.', function () {
 
-	fit ('1.1. Seção Já sou cadastrado: verifica se têm título, input e texto dos campos de e-mail e senha, opção recuperar senha e botão entrar.', function() {
-		helper.selecionarElemento(menuPage.linkCadastrarNovoCliente, autenticacaoPage.tituloUsuarioCadastrado);
+	it ('1.1. Seção Já sou cadastrado: verifica se têm título, input e texto dos campos de e-mail e senha, opção recuperar senha e botão entrar.', function() {
+		helper.selecionarElementoClick(menuPage.linkCadastrarNovoCliente);
 		helper.waitElementVisibility(autenticacaoPage.tituloUsuarioCadastrado);
 		expect (autenticacaoPage.tituloUsuarioCadastrado.isPresent()).toBe(true);
 		expect (autenticacaoPage.inputEmailUsuario.isDisplayed()).toBe(true);
@@ -69,7 +69,7 @@ describe ('1. Front-End: Tela de Login de Cliente - Valida existência de elemen
 	});
 
 	it ('1.2. Seção Sou um novo cliente: verifica se têm título, input de e-mail e botão continuar.', function() {
-		menuPage.acessoPagCadastroNovoCliente();
+		helper.selecionarElementoClick(menuPage.linkCadastrarNovoCliente);
 		helper.waitElementVisibility(autenticacaoPage.tituloNovoUsuario);
 		expect (autenticacaoPage.tituloNovoUsuario.getText()).toContain('Sou um novo cliente');
 		expect (autenticacaoPage.inputEmailNovoCadastro.isDisplayed()).toBe(true);
@@ -80,11 +80,10 @@ describe ('1. Front-End: Tela de Login de Cliente - Valida existência de elemen
 describe ('2. Front-End: Tela Criar Nova Conta - Verifica os elementos nome da label, se a label está vinculada ao input correspondente, se o input está habilitado e as mensagens de obrigatoriedade quando necessário.', function() {
 
 	it ('2.1 Seção Dados de Acesso: Campos de e-mail, senha, confirmação de senha e título da seção.', function() {
-		menuPage.acessoPagCadastroNovoCliente();
-		autenticacaoPage.informaEmailNovoCliente('tests@teste.com.br');
-		autenticacaoPage.clickBtnContinuar();
-		autenticacaoPage.clickBtnContinuar();
-		helper.waitElementVisibility(autenticacaoPage.tituloIdentificacao);
+		helper.selecionarElementoClick(menuPage.linkCadastrarNovoCliente);
+		helper.informarTextoElemento(autenticacaoPage.inputEmailNovoCadastro, 'tests@teste.com.br'); 
+		helper.selecionarElementoClick(autenticacaoPage.btnContinuar);
+		helper.selecionarElementoClick(autenticacaoPage.btnContinuar); //Confirmar Registro p/ análise dos campos obrigatórios
 		//Título
 		expect (autenticacaoPage.tituloIdentificacao.getText()).toContain('Identificação');
 		expect (autenticacaoPage.textoIndicativoObrigatoriedade.getText()).toContain('* Campos Obrigatórios');
@@ -109,10 +108,10 @@ describe ('2. Front-End: Tela Criar Nova Conta - Verifica os elementos nome da l
 	});
 
 	it ('2.2 Seção Dados Pessoais - Pessoa Física: Campos de nome, cpf, telefone, título da seção e a opção receber promoção.', function() {
-		menuPage.acessoPagCadastroNovoCliente();
-		autenticacaoPage.informaEmailNovoCliente('tests@teste.com.br');
-		autenticacaoPage.clickBtnContinuar();
-		autenticacaoPage.clickBtnContinuar();
+		helper.selecionarElementoClick(menuPage.linkCadastrarNovoCliente);
+		helper.informarTextoElemento(autenticacaoPage.inputEmailNovoCadastro, 'tests@teste.com.br'); 
+		helper.selecionarElementoClick(autenticacaoPage.btnContinuar);
+		helper.selecionarElementoClick(autenticacaoPage.btnContinuar); //Confirmar Registro p/ análise dos campos obrigatórios
 		helper.waitElementVisibility(autenticacaoPage.nmLabelNomeCompleto);
 		//Título
 		expect (autenticacaoPage.opcaoPessoaFisica.isDisplayed()).toBe(true);
@@ -141,13 +140,11 @@ describe ('2. Front-End: Tela Criar Nova Conta - Verifica os elementos nome da l
 	});
 
 	it ('2.3 - Seção Informações de Endereço: Campos de CEP, não sei meu CEP, Logradouro, número, bairro, cidade, estado, título da seção e os botões de voltar a loja e salvar.', function() {
-		menuPage.acessoPagCadastroNovoCliente();
-		autenticacaoPage.informaEmailNovoCliente('tests@teste.com.br');
-		autenticacaoPage.clickBtnContinuar();
-		autenticacaoPage.clickBtnContinuar();
-		helper.waitElementVisibility(autenticacaoPage.inputCEP);
-		autenticacaoPage.inputCEP.sendKeys(1);
-		autenticacaoPage.clickBtnContinuar();
+		helper.selecionarElementoClick(menuPage.linkCadastrarNovoCliente);
+		helper.informarTextoElemento(autenticacaoPage.inputEmailNovoCadastro, 'tests@teste.com.br'); 
+		helper.selecionarElementoClick(autenticacaoPage.btnContinuar);
+		helper.informarTextoElemento(autenticacaoPage.inputCEP, 1);
+		helper.selecionarElementoClick(autenticacaoPage.btnContinuar); //Confirmar Registro p/ análise dos campos obrigatórios
 		helper.waitElementVisibility(autenticacaoPage.inputLogradouro);
 		//Título
 		expect (autenticacaoPage.tituloInformacaoEndereco.isPresent()).toBe(true);
@@ -199,38 +196,34 @@ describe ('3. Front-End: Rotinas de Cadastro de Novo Cliente, Logout e Login', f
 
 	it ('3.1 Cadastrar novo cliente: Após preeencher campos obrigatórios e confirmar, verificar acesso a página minha conta.', function() {
 		menuPage.url();
-		menuPage.acessoPagCadastroNovoCliente();
-		autenticacaoPage.informaEmailNovoCliente('tests@teste.com.br');
-		autenticacaoPage.clickBtnContinuar();
+		helper.selecionarElementoClick(menuPage.linkCadastrarNovoCliente);
+		helper.informarTextoElemento(autenticacaoPage.inputEmailNovoCadastro, 'tests@teste.com.br'); 
+		helper.selecionarElementoClick(autenticacaoPage.btnContinuar);
 		helper.waitElementVisibility(autenticacaoPage.tituloIdentificacao);
 		autenticacaoPage.informaDadosPessoaisESenha('1472589', '1472589', 'USUARIO TESTE AUTOMATIZADO LOGIN', '07834874608', '31986032586')
 		autenticacaoPage.informaDadosEndereco('30130009','Avenida Afonso Pena', '700', 'Cruzeiro', 'Belo Horizonte');
-		autenticacaoPage.clickBtnContinuar();
+		helper.selecionarElementoClick(autenticacaoPage.btnContinuar);
 		helper.waitElementVisibility(menuPage.linkMinhaContaOptionMenu);
 		expect (menuPage.linkMinhaContaOptionMenu.isDisplayed()).toBe(true);
 	});
 
 	it ('3.2 Realizar Logout: Selecionar opção Sair e validar se a opção entrar é habilitada no menu.', function () {
-		menuPage.efetuaLogout();
+		helper.selecionarElementoClick(menuPage.linkLogout);
 		helper.waitElementVisibility(menuPage.linkLogin);
 		expect (menuPage.linkLogin.isDisplayed()).toBe(true);
 		expect (menuPage.linkCadastrarNovoCliente.isDisplayed()).toBe(true);
 	});
 
 	it ('3.3 Tentar logar com senha inválida: Verificar o retorno da mensagem "Login ou senha inválido".', function() {
-		menuPage.acessaPagLogin();
+		helper.selecionarElementoClick(menuPage.linkLogin);
 		autenticacaoPage.login ('tests@teste.com.br', '147258');
-		autenticacaoPage.clickBtnLogin();
-		browser.driver.sleep(500);
 		helper.waitElementVisibility(autenticacaoPage.msgLoginInvalid);
 		expect (autenticacaoPage.msgLoginInvalid.getText()).toContain('Login ou senha inválido.');
 	});
 
 	it ('3.4 Efetuar Login com autenticação válida: Verificar se a opção minha conta é habilitada no menu e a mensagem de recepção do usuário, na página Minha Conta', function() {
-		menuPage.acessaPagLogin();
-		browser.driver.sleep(500);
+		helper.selecionarElementoClick(menuPage.linkLogin);
 		autenticacaoPage.login ('tests@teste.com.br', '1472589');
-		autenticacaoPage.clickBtnLogin();
 		helper.waitElementVisibility(menuPage.linkMinhaContaOptionMenu);
 		expect (menuPage.linkMinhaContaOptionMenu.isDisplayed()).toBe(true);
 		expect (pedidosPage.msgBoasVindas.isPresent()).toBe(true);
@@ -240,10 +233,10 @@ describe ('3. Front-End: Rotinas de Cadastro de Novo Cliente, Logout e Login', f
 
 describe ('4. Front-End: Tela Visitar Produtos.', function() {
 
-	it ('4.1 Validar os lementos: título, imagem, preço, descrição curta, descrição do campo quantidade, input quantidade, botão favoritos, descrição para cálculo de frete, input de frete, botão de frete, botão comprar e descrição.', function() {
+	it ('4.1 Validar os elementos: título, imagem, preço, descrição curta, descrição do campo quantidade, input quantidade, botão favoritos, descrição para cálculo de frete, input de frete, botão de frete, botão comprar e descrição.', function() {
 		helper.waitElementVisibility(homePage.gridInitProdutos);
 		homePage.primeiroProdListado.getAttribute('title').then (function(tituloProdSelecionado) {
-			homePage.selecionaPrimeiroProdListado();
+			helper.selecionarElementoClick(homePage.primeiroProdListado);
 			expect (detalheProdutoPage.imgProdutoVisitado.isPresent()).toBe(true);
 			expect (detalheProdutoPage.tituloProduto.isPresent()).toBe(true); 
 			expect (detalheProdutoPage.precoProduto.getText()).not.toEqual('');
@@ -272,11 +265,11 @@ describe ('4. Front-End: Tela Visitar Produtos.', function() {
 describe ('5. Front-End: Tela Carrinho de Compras.', function() {
 
 	it ('5.1 Carrinho Vazio - verificar os as mensagens "Carrinho de Compras Vazio" e "clique aqui para continuar comprando".', function() {
-		menuPage.clickCarrinhoDeCompras();	
-		browser.driver.sleep(500);
+		helper.selecionarElementoClick(menuPage.linkCarrinhoCompras);	
+		helper.waitElementVisibility(carrinhoComprasPage.identProgressoCarrinho);
 		carrinhoComprasPage.primeiroProdCarrinho.isPresent().then (function(itemCarrinho) {
 			if (itemCarrinho === true) {
-				carrinhoComprasPage.excluirProdutoCarrinho();
+				helper.selecionarElementoClick(carrinhoComprasPage.linkLixeira);
 				helper.waitElementVisibility(carrinhoComprasPage.msgCarrinhoComprasVazio);
 				expect (carrinhoComprasPage.msgCarrinhoComprasVazio.isPresent()).toBe(true);
 				expect (carrinhoComprasPage.msgCliqueAquiParaContinuarComprando.isDisplayed()).toBe(true);
@@ -288,12 +281,16 @@ describe ('5. Front-End: Tela Carrinho de Compras.', function() {
 		});
 	});
 
-	it ('5.2 Carrinho com item - validar os elementos: nome, imagem, preço e quantidade do produto. Mais a mensagem produto adicionado, linha de progresso, título da tela, cep (input e botão), lixeira, campo de cupom, sub-total e botão finalizar.', function () {
-		helper.waitElementVisibility(homePage.gridInitProdutos);
-		homePage.selecionaPrimeiroProdListado();
-		helper.waitElementVisibility(detalheProdutoPage.produtoVisitado);
-		carrinhoComprasPage.addProdutVisitadoCarrinhho();
-		helper.waitElementVisibility(carrinhoComprasPage.primeiroProdCarrinho);
+	fit ('5.2 Carrinho com item - validar os elementos: nome, imagem, preço e quantidade do produto. Mais a mensagem produto adicionado, linha de progresso, título da tela, cep (input e botão), lixeira, campo de cupom, sub-total e botão finalizar.', function () {
+				
+		var visitarProdutoEAddCarrinho = function() {
+			helper.waitElementVisibility(homePage.gridInitProdutos);
+			helper.selecionarElementoClick(homePage.primeiroProdListado); 
+			helper.waitElementVisibility(detalheProdutoPage.produtoVisitado);
+			helper.selecionarElementoClick(carrinhoComprasPage.btnAddProdCarrinho);
+			helper.waitElementVisibility(carrinhoComprasPage.primeiroProdCarrinho);
+		};		
+
 		expect (carrinhoComprasPage.msgProdAddNoCarrinho.isPresent()).toBe(true);
 		expect (carrinhoComprasPage.primeiroProdCarrinho.isDisplayed()).toBe(true);
 		expect (carrinhoComprasPage.imgProdCarrinho.isDisplayed()).toBe(true);
@@ -318,25 +315,24 @@ describe ('6. Front-End: Tela Finalizar Compra.', function() {
 		menuPage.url();
 		menuPage.linkMinhaContaOptionMenu.isPresent().then (function(linkMinhaConta){
 			if (linkMinhaConta === true) {
-				menuPage.clickCarrinhoDeCompras();	
+				helper.selecionarElementoClick(menuPage.linkCarrinhoCompras);	
 				browser.driver.sleep(500);
 				carrinhoComprasPage.primeiroProdCarrinho.isPresent().then (function(itemCarrinho){
+					console.log('item Carrinho: ' + itemCarrinho);
 					if (itemCarrinho === true) {
-						carrinhoComprasPage.clickFinalizarCompra();		
-						helper.waitElementVisibility(finalizarCompraPage.labelCabecalho);
+						console.log('refatoração 1');
+						var ConfirmarFinalCompra = function() {
+							helper.selecionarElementoClick(carrinhoComprasPage.btnFinalizarCompra);	
+							helper.waitElementVisibility(finalizarCompraPage.labelCabecalho);
+						};	
 						expect (finalizarCompraPage.titleFinalizSuaCompra.isPresent()).toBe(true);
 						expect (finalizarCompraPage.linhaProgresso.isPresent()).toBe(true);
 						expect (finalizarCompraPage.linkNmUsuario.isDisplayed()).toBe(true);
 						expect (finalizarCompraPage.linkLogout.isDisplayed()).toBe(true);
 					} else {
-						menuPage.url();
-						helper.waitElementVisibility(homePage.gridInitProdutos);
-						homePage.selecionaPrimeiroProdListado();
-						helper.waitElementVisibility(detalheProdutoPage.produtoVisitado);
-						carrinhoComprasPage.addProdutVisitadoCarrinhho();
-						helper.waitElementVisibility(carrinhoComprasPage.primeiroProdCarrinho);
-						carrinhoComprasPage.clickFinalizarCompra();		
-						helper.waitElementVisibility(finalizarCompraPage.labelCabecalho);
+						console.log('refatoração 2');
+						this.visitarProdutoHome();
+						this.ConfirmarFinalCompra();					
 						expect (finalizarCompraPage.titleFinalizSuaCompra.isPresent()).toBe(true);
 						expect (finalizarCompraPage.linhaProgresso.isPresent()).toBe(true);
 						expect (finalizarCompraPage.linkNmUsuario.isDisplayed()).toBe(true);
@@ -2231,6 +2227,13 @@ describe ('12. Front-end: Minha Conta > Meus Comentários.', function() {
 
 
 
+/*- nível de abstração durante o desenvolvimento webdriver vs reconhecimento de variavel
+- refatoração (clean code JS)
+http://netcoders.com.br/testes-de-regressao-de-ui-utilizando-selenium-webdriver/
+https://books.google.com.br/books?id=MSphDQAAQBAJ&pg=PA117&lpg=PA117&dq=insert+except+webdriver+in+catch&source=bl&ots=8CpaKx25AA&sig=1tbeLWNDR2UjBfWeB3ppwLyFRW4&hl=pt-BR&sa=X&ved=0ahUKEwjQ3PLz7arZAhUEkJAKHRbGAakQ6AEIWjAF#v=onepage&q=insert%20except%20webdriver%20in%20catch&f=false
+http://eliasnogueira.com/arquivos_blog/selenium/desafio/resultados/3desafio/resposta.php
 
+https://medium.com/@osuissa/javascript-refatorando-uma-promise-do-callback-ate-o-async-await-1611e6d2c88a
+https://braziljs.org/blog/modulos-no-javascript-moderno/*/
 
 

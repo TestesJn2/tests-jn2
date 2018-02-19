@@ -26,23 +26,26 @@ var carrinhoComprasPage = function() {
 	this.msgCarrinhoComprasVazio = element(by.cssContainingText('h1', 'Carrinho de Compras Vazio'));
 	this.msgCliqueAquiParaContinuarComprando = element(by.linkText('aqui'));
 
+	//Barra de Progresso
+	this.identProgressoCarrinho = element(by.cssContainingText('div', 'Carrinho'));
+
 
 	//Título
 	this.titleCarrinhoDeCompras = element(by.cssContainingText('h1','Carrinho de Compras'));
 
-	this.addProdutVisitadoCarrinhho = function() {
+	/*this.addProdutVisitadoCarrinhho = function() {
 		helper.waitElementVisibility(this.btnAddProdCarrinho)
 		this.btnAddProdCarrinho.click();
-	};
+	};*/
 
-	this.clickFinalizarCompra = function() {
+	/*this.clickFinalizarCompra = function() {
 		helper.waitElementVisibility(this.btnFinalizarCompra);
 		this.btnFinalizarCompra.click();
-	};
+	};*/
 
-	this.excluirProdutoCarrinho = function() {
+	/*this.excluirProdutoCarrinho = function() {
 		helper.waitElementVisibility(this.linkLixeira);
 		this.linkLixeira.click();
-	};
+	};*/
 };
 module.exports = new carrinhoComprasPage();

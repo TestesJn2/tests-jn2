@@ -8,10 +8,10 @@ var homePage = function() {
 	this.gridInitProdutos = element(by.css('.products-grid'));
 	this.primeiroProdListado = element(by.css('.item a'));
 
-	this.selecionaPrimeiroProdListado = function() {
+	/*this.selecionaPrimeiroProdListado = function() {
 		helper.waitElementVisibility(this.primeiroProdListado);
 		this.primeiroProdListado.click();
-	};
+	};*/
 
 };
 
