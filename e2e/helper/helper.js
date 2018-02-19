@@ -25,23 +25,12 @@ var elementToBeClickable = function(element) {
 };
 
 // Métodos Gerais
-Helper.prototype.selecionarElemento = function(element, proxElement)	{
+Helper.prototype.selecionarElementoClick = function(element)	{
 	elementToBeClickable.call(this, element);
-	element.sendKeys(protractor.Key.ENTER);
-	try {
-		waitElementVisibility.call(this, proxElement);
-		proxElement.isPresent().then (function (status) {
-
-		});
-
-	} catch (WebDriverError) {
-		element.click();
-		console.log ('Elemento selecionado a partir da ação ...');	
-
-	}; 
+	element.click();
 };
 
-Helper.prototype.editarElemento = function (element, txt) {
+Helper.prototype.informarTextoElemento = function (element, txt) {
 	this.txt = txt;
 	waitElementVisibility.call(this, element);
 	element.clear().sendKeys(txt);
