@@ -1,0 +1,109 @@
+checklist Teste Loja
+
+
+### Cabeçalho Desktop
+-> Redirecionamento Redes Sociais (personalizado)
+-> Campo de busca (quando retorna resultado e quando não tem resultado)
+-> Logo (redirecionamento home)
+-> Ícone entrar/cadastro
+-> Logout
+-> Icone carrinho de compras e indicador de quantidade (ao passar o cursor via desktop, mostrar as opções finalizar compra e ir para o carrinho)
+-> Categorias e subcategorias
+Obs.: Subcategorias não estão sendo listadas em modo responsivo. 
+
+Itens da Home
+
+### Visitar produto
+-> Via Home 
+-> Via Categoria
+-> Via Resultado de Busca
+-> via Carrinho de Compras link nm produto
+-> No início na section, link de direcionamento sobre página(s) anterior(es) e atual. (só desktop)
+-> Imagem : Opção para ampliar, deslizar sobre mais de uma imagem cadastrada. (mobile abre a imagem, mas, não há opção de sair)
+-> SKU do produto
+-> Nome do Produto
+-> Descrição Curta
+-> Informações de Preço: Preço do Produto e promoções incidentes no preço
+-> Quantidade: Texto, input de alteração e opção de adição e subtração para quantidade (só desktop)
+-> Botão Comprar
+-> Adicionar Favoritos (Condicionado parametrização do back-end)
+-> Cálculo de Frete: texto, input e botão de cáltulo (só desktop)
+-> Descrição Completa
+-> Avaliar Produto: título e texto introdutório, texto e input referente nota, nome, título e comentário mais o botão de envio. (parametrizável e só desktop)
+-> Produto relacionado (parametrização e só desktop)
+
+
+### Carrinho de Compras
+-> Acesso via ícone carrinho
+-> Via Home (não habilitado btn comprar)
+-> Via Categoria (depende de parametrização | Sistema > Configuração JN2 > JN2 > Página de Categoria > Habilitar módulo = sim)
+-> Via Resultado de Busca (não habilitado btn comprar)
+-> Via produtos relacionados
+-> Ao visitar um produto
+
+-> Barra de Progresso
+-> Mensagem quando um item é adicionado ao carrinho (texto e opção fechar msg)
+
+carrinho vazio
+-> Título carrinho de compras vazio
+-> Notificação de carrinho vazio - clique aqui para continuar comprando
+
+carrinho cheio
+-> Título
+-> Btn Finalizar compra na parte superior (só desktop)
+-> Tabela com as colunas imagem (img config), nome do produto (link) , preço unitário, qtde (campo editável) + link atualizar, subtotal, lixeira. (subtotal só desktop)
+-> Link Atualizar valores (só desktop)
+-> link Esvaviar carrinho (só desktop)
+-> Cálculo de Frete (texto, input, btn cálculo)
+-> Digite cupom/vale-presente (texto, input, btn cálculo)
+-> Div subtotal, total e btn finalizar compra
+
+### Finalize a Sua Compra
+-> Acesso icone Carrinho de Compras quando há item no carrinho e está logado (só desktop)
+-> Acesso via tela Carrinho de Compras e estando logado(ver parametrização) 
+
+-> Barra de Progresso
+-> Btn Continuar Comprando
+-> Título e subtitulo
+-> div boas vindas com nome e email e opção de logout
+-> Div Endereço de Cobrança (texto mais input com endereço cadastrado mais a opção de definir novo endereço)
+	-> Ao novo endereço é habilitado os campos: *Pais, *Nome, *Sobrenome, *Telefone, *CEP, *Endereço, *Numero, complemento, *Bairro, *Cidade, *Estado mais chekbox "salvar catalógo de endereço"
+-> Div Endereço de Entrega: checkbox "enviar para o mesmo endereço de cobrança", se desmarcado habilita a opção de escolher outros endereços cadastrados, ou adicionar novo.
+	-> Ao novo endereço é habilitado os campos: *Pais, *Nome, *Sobrenome, *Telefone, *CEP, *Endereço, *Numero, complemento, *Bairro, *Cidade, *Estado mais chekbox "salvar catalógo de endereço"
+-> Div Forma de Entrega, lista título dos métodos de pagamento habilitado com preço e descrição.
+-> Div Cupom de desconto (texto, input, btn)
+-> Btn seguir avançar entre as colunas
+-> Div Forma de Pagamento (lista os dados da forma de pagamento parametrizada)
+-> Div Revisão do Pedido (tabela nm produto, qtde e subtotal, valor total, informação de frete, cupom (dinâmico), comentários.
+-> Checkbox Receber Novidades
+-> Btn Finalizar Pedido
+-> imagem Ambiente Seguro
+-> Btn Voltar
+	
+### Login/Cadastro
+
+
+### Dados Cadastrais
+
+### Minha Conta
+
+### Rodapé
+-> div que antecede newsletter (logo ou texto)
+-> div newsletter (input, placeholder, btn)
+-> div rede sociais
+-> Dados institucionais
+-> div dados da empresa
+-> log jn2
+-> dados da empresa
+
+### Favoritos 
+-> Acesso quando Deslogado - primeiro login
+-> Acesso quando Logado
+
+
+
+
+
+
+
+
