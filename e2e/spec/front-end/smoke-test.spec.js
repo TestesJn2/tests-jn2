@@ -210,6 +210,7 @@ describe ('3. Front-End: Rotinas de Cadastro de Novo Cliente, Logout e Login', f
 	it ('3.2 Realizar Logout: Selecionar opção Sair e validar se a opção entrar é habilitada no menu.', function () {
 		helper.selecionarElementoClick(menuPage.linkLogout);
 		helper.waitElementVisibility(menuPage.linkLogin);
+		autenticacaoPage.btnLogin.sendKeys(protractor.Key.ENTER);
 		expect (menuPage.linkLogin.isDisplayed()).toBe(true);
 		expect (menuPage.linkCadastrarNovoCliente.isDisplayed()).toBe(true);
 	});
@@ -221,7 +222,7 @@ describe ('3. Front-End: Rotinas de Cadastro de Novo Cliente, Logout e Login', f
 		expect (autenticacaoPage.msgLoginInvalid.getText()).toContain('Login ou senha inválido.');
 	});
 
-	it ('3.4 Efetuar Login com autenticação válida: Verificar se a opção minha conta é habilitada no menu e a mensagem de recepção do usuário, na página Minha Conta', function() {
+	fit ('3.4 Efetuar Login com autenticação válida: Verificar se a opção minha conta é habilitada no menu e a mensagem de recepção do usuário, na página Minha Conta', function() {
 		helper.selecionarElementoClick(menuPage.linkLogin);
 		autenticacaoPage.login ('tests@teste.com.br', '1472589');
 		helper.waitElementVisibility(menuPage.linkMinhaContaOptionMenu);
@@ -281,7 +282,7 @@ describe ('5. Front-End: Tela Carrinho de Compras.', function() {
 		});
 	});
 
-	fit ('5.2 Carrinho com item - validar os elementos: nome, imagem, preço e quantidade do produto. Mais a mensagem produto adicionado, linha de progresso, título da tela, cep (input e botão), lixeira, campo de cupom, sub-total e botão finalizar.', function () {
+	xit ('5.2 Carrinho com item - validar os elementos: nome, imagem, preço e quantidade do produto. Mais a mensagem produto adicionado, linha de progresso, título da tela, cep (input e botão), lixeira, campo de cupom, sub-total e botão finalizar.', function () {
 				
 		var visitarProdutoEAddCarrinho = function() {
 			helper.waitElementVisibility(homePage.gridInitProdutos);
