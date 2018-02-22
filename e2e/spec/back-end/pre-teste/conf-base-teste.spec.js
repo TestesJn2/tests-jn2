@@ -68,7 +68,7 @@ describe ('Como o ambiente de homologação é compartilhado, esses testes visam
 		helper.waitElementVisibility(gerenciarCategoriasPage.subCategoriaCriadosMudos); //última subcategoria a ser exibida
 		browser.driver.sleep(2000);
 		helper.selecionarElemento(gerenciarCategoriasPage.subCategoriaLancamentos);
-		browser.driver.sleep(5000);
+		browser.driver.sleep(4500);
 		gerenciarCategoriasPage.inputNmCategoria.getAttribute('value').then (function (value) {
 			console.log('valor inputNmCategoria: ' + value);
 			if (value === 'Lançamentos |O que tem de mais novo para você;)') {
