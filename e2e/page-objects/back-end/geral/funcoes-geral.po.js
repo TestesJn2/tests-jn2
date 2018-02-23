@@ -9,18 +9,21 @@ var funcoesGeralPage = function() {
 	this.btnFiltrar = element(by.buttonText('Filtrar'));
 	this.btnLimparFiltro = element(by.buttonText('Limpar Filtros'));
 	this.btnExcluir = element(by.buttonText('Excluir'));
-	this.linkTodosResultados = element(by.linkText('Marcar Todos'));
 	this.btnExecutar = element(by.buttonText('Executar'));
+	this.btnAdicionarArquivo  = element(by.buttonText('Adicionar arquivo'));
+	this.btnVoltar = element(by.buttonText('Voltar'));
+	this.btnSalvarContinuarEdit = element(by.buttonText('Salvar e Continuar Editando'));
+
+	//Demais dados do cabeçalho
+	this.linkTodosResultados = element(by.linkText('Marcar Todos'));
+	this.linkDesmarcarTodos = element(by.linkText('Desmarcar Todos'));
+	this.linkMarcarVisiveis = element(by.linkText('Marcar Visíveis'));
+	this.linkDesmarcarVisiveis = element(by.linkText('Desmarcar Visíveis'));
 	
 
 	this.url = function () {
 		browser.get('');
 	};
-
-	/*this.confirmarBusca = function () {
-		helper.waitElementVisibility(this.btnFiltrar);
-		this.btnFiltrar.click();
-	};*/
 
 	this.confirmarExclusao = function() {
 		helper.waitElementVisibility(this.btnExcluir);
