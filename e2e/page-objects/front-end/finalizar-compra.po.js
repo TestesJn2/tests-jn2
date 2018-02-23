@@ -104,13 +104,13 @@ var finalizarCompraPage = function() {
 		this.btnSeguirEntrega.sendKeys(protractor.Key.ENTER);
 	};*/
 
-	this.clickSeguirFinalizarCompra = function() {
+	/*this.clickSeguirFinalizarCompra = function() {
 		helper.waitElementVisibility(this.btnSeguirFinalizarCompra);
 		this.btnSeguirFinalizarCompra.sendKeys(protractor.Key.ENTER);
 		browser.driver.sleep(2000);
-	};
+	};*/
 
-	this.clickFinalizarPedido = function() {
+	/*this.clickFinalizarPedido = function() {
 		browser.driver.sleep(4000);
 		helper.waitElementVisibility(this.btnFinalizarPedido);
 		this.btnFinalizarPedido.sendKeys(protractor.Key.ENTER);

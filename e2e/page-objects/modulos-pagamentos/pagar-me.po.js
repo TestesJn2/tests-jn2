@@ -16,11 +16,11 @@ var pagarmePage = function () {
 	this.dateYearPagarme = element(by.id('pagarme_cc_expiration_yr'));
 	this.codeSegurityPagarme = element(by.id('pagarme_cc_cc_cid'));
 
-	this.selecionaFormaPagCCPagarMe = function () {
+	/*this.selecionaFormaPagCCPagarMe = function () {
 		helper.waitElementVisibility(this.optionPagarMeCC);
 		this.optionPagarMeCC.click();
 		browser.driver.sleep(8000);
-	};
+	};*/
 
 	this.selecionaFormPagBoleto = function() {
 		helper.waitElementVisibility(this.optionPagarMeBoleto);
