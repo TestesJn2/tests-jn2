@@ -47,7 +47,7 @@ var finalizarCompraPage = function() {
 	this.radioEntregaGratis = element(by.id('s_method_freeshipping_freeshipping'));
 	this.radioPACCorreios = element(by.id('s_method_pedroteixeira_correios_41106'));
 
-	this.selecionaOptionFreteGratis = function() {
+	/*this.selecionaOptionFreteGratis = function() {
 		browser.driver.sleep(1000);
 		var opcaofreteGratis = this.radioEntregaGratis;
 		helper.waitElementVisibility(opcaofreteGratis);
@@ -73,7 +73,7 @@ var finalizarCompraPage = function() {
 			};
 		});
 		browser.driver.sleep(2000);
-	};
+	};*/
 
 	this.selecionaOptionPACCorreios = function() {
 		var opcaoPACCorreios = this.radioPACCorreios;
@@ -99,10 +99,10 @@ var finalizarCompraPage = function() {
 		browser.driver.sleep(2000);
 	};
 
-	this.clickSeguirSectionFormaPagamento = function() {
+	/*this.clickSeguirSectionFormaPagamento = function() {
 		helper.waitElementVisibility(this.btnSeguirEntrega);
 		this.btnSeguirEntrega.sendKeys(protractor.Key.ENTER);
-	};
+	};*/
 
 	this.clickSeguirFinalizarCompra = function() {
 		helper.waitElementVisibility(this.btnSeguirFinalizarCompra);

@@ -221,9 +221,11 @@ describe ('3. Front-End: Rotinas de Cadastro de Novo Cliente, Logout e Login', f
 		expect (autenticacaoPage.msgLoginInvalid.getText()).toContain('Login ou senha inválido.');
 	});
 
-	it ('3.4 Efetuar Login com autenticação válida: Verificar se a opção minha conta é habilitada no menu e a mensagem de recepção do usuário, na página Minha Conta', function() {
+	fit ('3.4 Efetuar Login com autenticação válida: Verificar se a opção minha conta é habilitada no menu e a mensagem de recepção do usuário, na página Minha Conta', function() {
+		//Refatorar Login(1)
 		helper.selecionarElementoClick(menuPage.linkLogin);
 		autenticacaoPage.login ('tests@teste.com.br', '1472589');
+
 		helper.waitElementVisibility(menuPage.linkMinhaContaOptionMenu);
 		expect (menuPage.linkMinhaContaOptionMenu.isDisplayed()).toBe(true);
 		expect (pedidosPage.msgBoasVindas.isPresent()).toBe(true);
@@ -281,15 +283,15 @@ describe ('5. Front-End: Tela Carrinho de Compras.', function() {
 		});
 	});
 
-	fit ('5.2 Carrinho com item - validar os elementos: nome, imagem, preço e quantidade do produto. Mais a mensagem produto adicionado, linha de progresso, título da tela, cep (input e botão), lixeira, campo de cupom, sub-total e botão finalizar.', function () {
+	it ('5.2 Carrinho com item - validar os elementos: nome, imagem, preço e quantidade do produto. Mais a mensagem produto adicionado, linha de progresso, título da tela, cep (input e botão), lixeira, campo de cupom, sub-total e botão finalizar.', function () {
 				
-		var visitarProdutoEAddCarrinho = function() {
-			helper.waitElementVisibility(homePage.gridInitProdutos);
-			helper.selecionarElementoClick(homePage.primeiroProdListado); 
-			helper.waitElementVisibility(detalheProdutoPage.produtoVisitado);
-			helper.selecionarElementoClick(carrinhoComprasPage.btnAddProdCarrinho);
-			helper.waitElementVisibility(carrinhoComprasPage.primeiroProdCarrinho);
-		};		
+		//Encapsular (refatorar)
+		menuPage.url()
+		helper.waitElementVisibility(homePage.gridInitProdutos);
+		helper.selecionarElementoClick(homePage.primeiroProdListado); 
+		helper.waitElementVisibility(detalheProdutoPage.produtoVisitado);
+		helper.selecionarElementoClick(carrinhoComprasPage.btnAddProdCarrinho);
+		helper.waitElementVisibility(carrinhoComprasPage.primeiroProdCarrinho);
 
 		expect (carrinhoComprasPage.msgProdAddNoCarrinho.isPresent()).toBe(true);
 		expect (carrinhoComprasPage.primeiroProdCarrinho.isDisplayed()).toBe(true);
@@ -319,20 +321,30 @@ describe ('6. Front-End: Tela Finalizar Compra.', function() {
 				browser.driver.sleep(500);
 				carrinhoComprasPage.primeiroProdCarrinho.isPresent().then (function(itemCarrinho){
 					console.log('item Carrinho: ' + itemCarrinho);
-					if (itemCarrinho === true) {
-						console.log('refatoração 1');
-						var ConfirmarFinalCompra = function() {
-							helper.selecionarElementoClick(carrinhoComprasPage.btnFinalizarCompra);	
-							helper.waitElementVisibility(finalizarCompraPage.labelCabecalho);
-						};	
+					if (itemCarrinho === true) {						
+						//Refatorar ConfirmarFinalCompra
+						helper.selecionarElementoClick(carrinhoComprasPage.btnFinalizarCompra);	
+						helper.waitElementVisibility(finalizarCompraPage.labelCabecalho);
+						
+						//Refatorar resultado do teste
 						expect (finalizarCompraPage.titleFinalizSuaCompra.isPresent()).toBe(true);
 						expect (finalizarCompraPage.linhaProgresso.isPresent()).toBe(true);
 						expect (finalizarCompraPage.linkNmUsuario.isDisplayed()).toBe(true);
 						expect (finalizarCompraPage.linkLogout.isDisplayed()).toBe(true);
 					} else {
-						console.log('refatoração 2');
-						this.visitarProdutoHome();
-						this.ConfirmarFinalCompra();					
+						//Refatorar this.visitarProdutoHome();
+						menuPage.url()
+						helper.waitElementVisibility(homePage.gridInitProdutos);
+						helper.selecionarElementoClick(homePage.primeiroProdListado); 
+						helper.waitElementVisibility(detalheProdutoPage.produtoVisitado);
+						helper.selecionarElementoClick(carrinhoComprasPage.btnAddProdCarrinho);
+						helper.waitElementVisibility(carrinhoComprasPage.primeiroProdCarrinho);
+						//Refatorar this.ConfirmarFinalCompra();
+						helper.selecionarElementoClick(carrinhoComprasPage.btnFinalizarCompra);	
+						helper.waitElementVisibility(finalizarCompraPage.labelCabecalho);
+
+
+						//Refatorar buscar objeto asseet
 						expect (finalizarCompraPage.titleFinalizSuaCompra.isPresent()).toBe(true);
 						expect (finalizarCompraPage.linhaProgresso.isPresent()).toBe(true);
 						expect (finalizarCompraPage.linkNmUsuario.isDisplayed()).toBe(true);
@@ -340,30 +352,38 @@ describe ('6. Front-End: Tela Finalizar Compra.', function() {
 					};
 				});
 			} else {
-				menuPage.acessaPagLogin();
-				browser.driver.sleep(500);
+				//Refatorar Dados de Login (1)
+				helper.selecionarElementoClick(menuPage.linkLogin);
 				autenticacaoPage.login ('tests@teste.com.br', '1472589');
-				autenticacaoPage.clickBtnLogin();
+
 				menuPage.url();
-				menuPage.clickCarrinhoDeCompras();	
+				helper.selecionarElementoClick(menuPage.linkCarrinhoCompras);
 				browser.driver.sleep(500);
 				carrinhoComprasPage.primeiroProdCarrinho.isPresent().then (function(itemCarrinho){
 					if (itemCarrinho === true) {
-						carrinhoComprasPage.clickFinalizarCompra();		
+						//Refatorar ConfirmarFinalCompra
+						helper.selecionarElementoClick(carrinhoComprasPage.btnFinalizarCompra);	
 						helper.waitElementVisibility(finalizarCompraPage.labelCabecalho);
+						
+						//Refatorar buscar objeto asseet
 						expect (finalizarCompraPage.titleFinalizSuaCompra.isPresent()).toBe(true);
 						expect (finalizarCompraPage.linhaProgresso.isPresent()).toBe(true);
 						expect (finalizarCompraPage.linkNmUsuario.isDisplayed()).toBe(true);
 						expect (finalizarCompraPage.linkLogout.isDisplayed()).toBe(true);
 					} else {
-						menuPage.url();
+						//Refatorar this.visitarProdutoHome();
+						menuPage.url()
 						helper.waitElementVisibility(homePage.gridInitProdutos);
-						homePage.selecionaPrimeiroProdListado();
+						helper.selecionarElementoClick(homePage.primeiroProdListado); 
 						helper.waitElementVisibility(detalheProdutoPage.produtoVisitado);
-						carrinhoComprasPage.addProdutVisitadoCarrinhho();
+						helper.selecionarElementoClick(carrinhoComprasPage.btnAddProdCarrinho);
 						helper.waitElementVisibility(carrinhoComprasPage.primeiroProdCarrinho);
-						carrinhoComprasPage.clickFinalizarCompra();		
+						//Refatorar this.ConfirmarFinalCompra();
+						helper.selecionarElementoClick(carrinhoComprasPage.btnFinalizarCompra);	
 						helper.waitElementVisibility(finalizarCompraPage.labelCabecalho);
+
+
+						//Refatorar buscar objeto asseet
 						expect (finalizarCompraPage.titleFinalizSuaCompra.isPresent()).toBe(true);
 						expect (finalizarCompraPage.linhaProgresso.isPresent()).toBe(true);
 						expect (finalizarCompraPage.linkNmUsuario.isDisplayed()).toBe(true);
@@ -374,7 +394,7 @@ describe ('6. Front-End: Tela Finalizar Compra.', function() {
 		});
 	});
 
-	it ('6.2 Seção Endereço de Combrança e validar os elementos: informações do endereço de entrega, opção de frete, título da tela, título da seção, opção de enviar para o mesmo endereço de combrança e botão seguir.', function() {
+	xit ('6.2 Seção Endereço de Combrança e validar os elementos: informações do endereço de entrega, opção de frete, título da tela, título da seção, opção de enviar para o mesmo endereço de combrança e botão seguir.', function() {
 		//Teste depende do cadastro de usuário ter sido realizado e trata-se utiliza parte do código do item 4.4, logo, manutenção no mesmo deve ser replicada para este teste.
 		menuPage.url();
 		menuPage.linkMinhaContaOptionMenu.isPresent().then (function(linkMinhaConta){
@@ -646,33 +666,44 @@ describe ('6. Front-End: Tela Finalizar Compra.', function() {
 
 describe ('7. Front-End: Compras utilizando os métodos Pagar.Me, Cielo 3.0 e PagSeguro.', function () {
 
-	it ('7.1 CC Pagar.Me - Finalizar Compra e verificar o status do pedido.', function() {
+	fit ('7.1 CC Pagar.Me - Finalizar Compra e verificar o status do pedido.', function() {
 		//Teste depende do cadastro de usuário ter sido realizado e trata-se utiliza parte do código do item 4.4, logo, manutenção no mesmo deve ser replicada para este teste.
 		menuPage.url();
 		menuPage.linkMinhaContaOptionMenu.isPresent().then (function(linkMinhaConta){
 			if (linkMinhaConta === true) {
 				console.log('usuário logado');
-				menuPage.clickCarrinhoDeCompras();	
+				helper.selecionarElementoClick(menuPage.linkCarrinhoCompras);	
 				browser.driver.sleep(500);
 				carrinhoComprasPage.primeiroProdCarrinho.isPresent().then (function(itemCarrinho){
 					if (itemCarrinho === true) {
 						console.log('usuário logado e possui item no carrinho');
-						carrinhoComprasPage.clickFinalizarCompra();		
+						helper.selecionarElementoClick(carrinhoComprasPage.btnFinalizarCompra);		
 						browser.driver.sleep(500);
 						finalizarCompraPage.radioEntregaGratis.isPresent().then (function (checkedFreteGratis) {
 							if (checkedFreteGratis === true) {
 								console.log('usuário logado, possui item no carrinho e tem a opção de utilizar frete grátis.');
-								finalizarCompraPage.selecionaOptionFreteGratis();
-								finalizarCompraPage.clickSeguirSectionFormaPagamento();
+								helper.selecionarRadioButton(finalizarCompraPage.radioEntregaGratis);
+								console.log('teste refatoração');
+								helper.selecionarElementoENTER(finalizarCompraPage.btnSeguirEntrega);
 								browser.driver.sleep(500);
 								pagarmePage.optionPagarMeCC.isPresent().then (function (PagarMeHabilit) {
 									if (PagarMeHabilit === true) {
+										//Refatorar - tornar todas as funções de uma dada forma de pagamento em um objeto
 										console.log('usuário logado, possui item no carrinho, utiliza frete grátis e utilizará CC PagarMe.');
-										pagarmePage.selecionaFormaPagCCPagarMe();
+										helper.selecionarElementoClick(pagarmePage.optionPagarMeCC);
+										//Refatorar espera AJAX
+										browser.driver.sleep(8000);
+										//Refatorar metodo selecionar primeira linha da tabela
 										pagarmePage.selecionaPrimeiraParcela();
 										pagarmePage.preencheDadosDoCCPagarMe('4024007169408340','TESTE PAGARMECC', '12', '2019','504');
-										finalizarCompraPage.clickSeguirFinalizarCompra();
-										finalizarCompraPage.clickFinalizarPedido();
+										helper.selecionarElementoENTER(finalizarCompraPage.btnSeguirFinalizarCompra);
+										//Refatorar espera AJAX
+										browser.driver.sleep(2000);
+										//Refatorar espera AJAX - ref. finalizar compra
+										browser.driver.sleep(4000);
+										helper.selecionarElementoENTER(finalizarCompraPage.btnFinalizarPedido);
+
+										//Refatorar resultados dos testes
 										helper.waitElementVisibility(confirmaPedidoCompradoPage.tituloAcompanheSeuPedido);										
 										expect (confirmaPedidoCompradoPage.tituloAcompanheSeuPedido.isPresent()).toBe(true);
 										expect (confirmaPedidoCompradoPage.linhaProgressoConfirmacao.getCssValue('color')).toEqual('rgba(255, 215, 151, 1)');
@@ -694,16 +725,24 @@ describe ('7. Front-End: Compras utilizando os métodos Pagar.Me, Cielo 3.0 e Pa
 									if (checkedPAC === true) {
 										console.log('usuário logado, possui item no carrinho e vai utilizar o método de entrega PAC Correios.');
 										finalizarCompraPage.selecionaOptionPACCorreios();
-										finalizarCompraPage.clickSeguirSectionFormaPagamento();
+										helper.selecionarElementoENTER(finalizarCompraPage.btnSeguirEntrega);
 										browser.driver.sleep(500);
 										pagarmePage.optionPagarMeCC.isPresent().then (function (PagarMeHabilit) {
 											if (PagarMeHabilit === true) {
 												console.log('usuário logado, possui item no carrinho, utiliza PAC Correios e utilizará CC PagarMe.');
-												pagarmePage.selecionaFormaPagCCPagarMe();
+												helper.selecionarElementoClick(pagarmePage.optionPagarMeCC);
+												//refatorar ajax
+												browser.driver.sleep(8000);
 												pagarmePage.selecionaPrimeiraParcela();
 												pagarmePage.preencheDadosDoCCPagarMe('4024007169408340','TESTE PAGARMECC', '12', '2019','504');
-												finalizarCompraPage.clickSeguirFinalizarCompra();
-												finalizarCompraPage.clickFinalizarPedido();
+												helper.selecionarElementoENTER(finalizarCompraPage.btnSeguirFinalizarCompra);
+												//Refatorar espera AJAX
+												browser.driver.sleep(2000);
+												//Refatorar espera AJAX - ref. finalizar compra
+												browser.driver.sleep(4000);
+												helper.selecionarElementoENTER(finalizarCompraPage.btnFinalizarPedido);
+
+												//Refatorar resultados dos testes
 												helper.waitElementVisibility(confirmaPedidoCompradoPage.tituloAcompanheSeuPedido);										
 												expect (confirmaPedidoCompradoPage.tituloAcompanheSeuPedido.isPresent()).toBe(true);
 												expect (confirmaPedidoCompradoPage.linhaProgressoConfirmacao.getCssValue('color')).toEqual('rgba(255, 215, 151, 1)');
@@ -812,7 +851,7 @@ describe ('7. Front-End: Compras utilizando os métodos Pagar.Me, Cielo 3.0 e Pa
 				autenticacaoPage.login ('tests@teste.com.br', '1472589');
 				autenticacaoPage.clickBtnLogin();
 				menuPage.url();
-				menuPage.clickCarrinhoDeCompras();	
+				helper.selecionarElementoClick(menuPage.linkCarrinhoCompras);	
 				browser.driver.sleep(500);
 				carrinhoComprasPage.primeiroProdCarrinho.isPresent().then (function(itemCarrinho){
 					if (itemCarrinho === true) {
