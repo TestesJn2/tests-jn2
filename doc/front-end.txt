@@ -6,18 +6,20 @@ checklist Teste Loja
 -> Campo de busca (quando retorna resultado e quando não tem resultado)
 -> Logo (redirecionamento home)
 -> Ícone entrar/cadastro
+-> Minha Conta
 -> Logout
 -> Icone carrinho de compras e indicador de quantidade (ao passar o cursor via desktop, mostrar as opções finalizar compra e ir para o carrinho)
 -> Categorias e subcategorias
 Obs.: Subcategorias não estão sendo listadas em modo responsivo. 
 
-Itens da Home
+### Itens da Home
 
 ### Visitar produto
 -> Via Home 
 -> Via Categoria
 -> Via Resultado de Busca
 -> via Carrinho de Compras link nm produto
+
 -> No início na section, link de direcionamento sobre página(s) anterior(es) e atual. (só desktop)
 -> Imagem : Opção para ampliar, deslizar sobre mais de uma imagem cadastrada. (mobile abre a imagem, mas, não há opção de sair)
 -> SKU do produto
@@ -50,7 +52,8 @@ carrinho vazio
 
 carrinho cheio
 -> Título
--> Btn Finalizar compra na parte superior (só desktop)
+-> Btn Finalizar compra na parte superior
+-> Btn Continuar Comprando
 -> Tabela com as colunas imagem (img config), nome do produto (link) , preço unitário, qtde (campo editável) + link atualizar, subtotal, lixeira. (subtotal só desktop)
 -> Link Atualizar valores (só desktop)
 -> link Esvaviar carrinho (só desktop)
