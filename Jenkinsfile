@@ -6,3 +6,9 @@ stage 'Checkout'
 
 stage 'Tests'
  
+
+stage 'Browser Tests'
+
+stage 'Análise de Relatórios'
+
+stage 'Deploy'
