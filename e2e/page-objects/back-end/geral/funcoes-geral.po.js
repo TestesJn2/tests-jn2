@@ -2,7 +2,6 @@
 
 'use strict';  
 var helper = require('../../../helper/helper.js');
-//Ver nome do po e verificação se houve intereação do elemento
 
 var funcoesGeralPage = function() {
 	//Botões
@@ -13,6 +12,8 @@ var funcoesGeralPage = function() {
 	this.btnAdicionarArquivo  = element(by.buttonText('Adicionar arquivo'));
 	this.btnVoltar = element(by.buttonText('Voltar'));
 	this.btnSalvarContinuarEdit = element(by.buttonText('Salvar e Continuar Editando'));
+	this.btnDesfazer = element(by.buttonText('Desfazer'));
+	this.btnSalvar = element(by.buttonText('Salvar'));
 
 	//Demais dados do cabeçalho
 	this.linkTodosResultados = element(by.linkText('Marcar Todos'));
