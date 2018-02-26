@@ -3,3 +3,6 @@ stage 'Checkout'
   deleteDir()
   checkout scm
  }
+
+stage 'Tests'
+ 
