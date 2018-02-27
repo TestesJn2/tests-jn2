@@ -50,7 +50,6 @@ var promocoesCatalogoPage = function() {
 	this.inputHabilitarSubProdutos = element(by.id('rule_sub_is_enable'));
 	this.labelParaProcessamentoNovasRegras = element(by.cssContainingText('label', 'Parar processamento de novas regras'));
 	this.inputParaProcessamentoNovasRegras = element(by.id('rule_stop_rules_processing'));
-
 };
 
 module.exports = new promocoesCatalogoPage();
