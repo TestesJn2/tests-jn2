@@ -10,9 +10,19 @@ checklist Teste Loja
 -> Logout
 -> Icone carrinho de compras e indicador de quantidade (ao passar o cursor via desktop, mostrar as opções finalizar compra e ir para o carrinho)
 -> Categorias e subcategorias
+-> Btn Fechar menu em modo responsivo
 Obs.: Subcategorias não estão sendo listadas em modo responsivo. 
 
 ### Itens da Home
+
+### Rodapé
+-> div que antecede newsletter (logo ou texto)
+-> div newsletter (input, placeholder, btn)
+-> div rede sociais
+-> Dados institucionais
+-> div dados da empresa
+-> logo jn2
+-> dados da empresa
 
 ### Visitar produto
 -> Via Home 
@@ -34,6 +44,7 @@ Obs.: Subcategorias não estão sendo listadas em modo responsivo.
 -> Avaliar Produto: título e texto introdutório, texto e input referente nota, nome, título e comentário mais o botão de envio. (parametrizável e só desktop)
 -> Produto relacionado (parametrização e só desktop)
 
+### Categorias
 
 ### Carrinho de Compras
 -> Acesso via ícone carrinho
@@ -90,14 +101,7 @@ carrinho cheio
 
 ### Minha Conta
 
-### Rodapé
--> div que antecede newsletter (logo ou texto)
--> div newsletter (input, placeholder, btn)
--> div rede sociais
--> Dados institucionais
--> div dados da empresa
--> log jn2
--> dados da empresa
+
 
 ### Favoritos 
 -> Acesso quando Deslogado - primeiro login
