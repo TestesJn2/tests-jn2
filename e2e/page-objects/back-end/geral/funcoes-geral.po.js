@@ -4,6 +4,7 @@
 var helper = require('../../../helper/helper.js');
 
 var funcoesGeralPage = function() {
+
 	//Botões
 	this.btnFiltrar = element(by.buttonText('Filtrar'));
 	this.btnLimparFiltro = element(by.buttonText('Limpar Filtros'));
