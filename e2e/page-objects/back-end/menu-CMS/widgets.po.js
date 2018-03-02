@@ -23,7 +23,7 @@ var widgetsPage = function () {
 	//Editar ou Criar Widget
 	this.tituloConfiguracoes = element(by.cssContainingText('h4', 'Configurações'));
 	this.labelTipo = element(by.cssContainingText('label', 'Tipo'));
-	this.inputTipo = element(by.id('type'));Ordem
+	this.inputTipo = element(by.id('type'));
 	this.labelTemplate = element(by.cssContainingText('label', 'Template'));
 	this.inputTemplate = element(by.id('package_theme'));
 	this.btnContinuar = element(by.id('id_49a03d2a7197ab737fe983ffc7edcc1a'));
@@ -40,6 +40,8 @@ var widgetsPage = function () {
 	this.tituloOpcaoWidget = element(by.cssContainingText('h4', 'Opções de Widget'));
 	this.labelBloco = element(by.cssContainingText('label', 'Bloco'));
 	this.btnSelecionar = element(by.id('options_fieldsete84e3b5e56bf0cb551d56a21dc4df56a_block_id814ff7553dc4190d1118b0afc2cdef31control'));
+
+
 };
 
 module.exports = new widgetsPage();
