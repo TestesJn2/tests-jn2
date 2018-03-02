@@ -40,8 +40,6 @@ var widgetsPage = function () {
 	this.tituloOpcaoWidget = element(by.cssContainingText('h4', 'Opções de Widget'));
 	this.labelBloco = element(by.cssContainingText('label', 'Bloco'));
 	this.btnSelecionar = element(by.id('options_fieldsete84e3b5e56bf0cb551d56a21dc4df56a_block_id814ff7553dc4190d1118b0afc2cdef31control'));
-
-
 };
 
 module.exports = new widgetsPage();
