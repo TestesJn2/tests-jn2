@@ -1,14 +1,13 @@
 stage 'Checkout'
- node ('slave') {
+ node ('') {
   deleteDir()
   checkout scm
  }
 
 stage 'Tests'
- 
 
 stage 'Browser Tests'
 
-stage 'An√°lise de Relat√≥rios'
+stage 'An·lise de RelatÛrios'
 
 stage 'Deploy'
